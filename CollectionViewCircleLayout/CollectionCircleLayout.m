@@ -10,4 +10,12 @@
 
 @implementation CollectionCircleLayout
 
+- (void)prepareLayout {
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(100, 100);
+}
+
 @end

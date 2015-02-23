@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CollectionCircleLayout : UICollectionViewLayout <UICollectionViewDelegateFlowLayout>
+@interface CollectionCircleLayout : UICollectionViewFlowLayout <UICollectionViewDelegateFlowLayout>
 
 @end
