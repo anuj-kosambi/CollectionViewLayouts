@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CollectionAlbumCell.h"
 
-@interface CollectionDataSource : NSObject <UICollectionViewDataSource>
+@interface CollectionDataSource: NSObject <UICollectionViewDataSource>
 
 
 @end

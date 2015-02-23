@@ -19,7 +19,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        CellCount = 20;
+        CellCount = 5;
     }
     return self;
 }
@@ -38,7 +38,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CircleCellResuseIdentifier forIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    
+
     return cell;
 }
 

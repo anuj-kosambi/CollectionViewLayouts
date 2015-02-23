@@ -9,4 +9,14 @@
 
 @implementation CollectionAlbumCell
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.layer.borderWidth = 3;
+        self.layer.borderColor = [UIColor redColor].CGColor;
+        
+    }
+    return self;
+}
+
 @end
