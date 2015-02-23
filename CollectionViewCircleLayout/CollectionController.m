@@ -26,6 +26,19 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[CollectionCircleCell class] forCellWithReuseIdentifier:CircleCellResuseIdentifier];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    [self.collectionView setGestureRecognizers:@[tapRecognizer]];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    CGPoint touchPoint = [sender locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
+    if (indexPath) {
+        
+    } else {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
