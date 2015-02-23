@@ -15,10 +15,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        
-        [self.contentView setBackgroundColor:[UIColor darkGrayColor]];
+
+        [self.contentView setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:self.imageView];
-        self.layer.borderWidth = 3;
+        self.imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
+        self.imageView.clipsToBounds = YES;
+        self.layer.cornerRadius = self.frame.size.height / 2;
+        self.layer.borderWidth = 2;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
     }
     return self;
@@ -26,6 +29,8 @@
 
 - (void)layoutSubviews {
     self.imageView.frame = self.bounds;
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
+    self.imageView.clipsToBounds = YES;
 }
 
 - (void)prepareForReuse {
