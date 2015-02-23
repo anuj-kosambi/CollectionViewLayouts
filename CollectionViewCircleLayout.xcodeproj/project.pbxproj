@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		41B1F6851A9B2228004D1063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6841A9B2228004D1063 /* main.m */; };
 		41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6871A9B2228004D1063 /* AppDelegate.m */; };
-		41B1F68B1A9B2228004D1063 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F68A1A9B2228004D1063 /* ViewController.m */; };
 		41B1F68E1A9B2228004D1063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F68C1A9B2228004D1063 /* Main.storyboard */; };
 		41B1F6901A9B2228004D1063 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F68F1A9B2228004D1063 /* Images.xcassets */; };
 		41B1F6931A9B2228004D1063 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6911A9B2228004D1063 /* LaunchScreen.xib */; };
 		41B1F69F1A9B2228004D1063 /* CollectionViewCircleLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F69E1A9B2228004D1063 /* CollectionViewCircleLayoutTests.m */; };
+		41B1F6AA1A9B2268004D1063 /* CollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6A91A9B2268004D1063 /* CollectionController.m */; };
+		41B1F6AD1A9B22AF004D1063 /* CollectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */; };
+		41B1F6B01A9B2360004D1063 /* CollectionCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */; };
+		41B1F6B31A9B2428004D1063 /* CollectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6B21A9B2428004D1063 /* CollectionDelegate.m */; };
+		41B1F6B61A9B2995004D1063 /* CollectionCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,22 @@
 		41B1F6841A9B2228004D1063 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41B1F6861A9B2228004D1063 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		41B1F6871A9B2228004D1063 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		41B1F6891A9B2228004D1063 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		41B1F68A1A9B2228004D1063 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		41B1F68D1A9B2228004D1063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41B1F68F1A9B2228004D1063 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		41B1F6921A9B2228004D1063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		41B1F6981A9B2228004D1063 /* CollectionViewCircleLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollectionViewCircleLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B1F69D1A9B2228004D1063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B1F69E1A9B2228004D1063 /* CollectionViewCircleLayoutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCircleLayoutTests.m; sourceTree = "<group>"; };
+		41B1F6A81A9B2268004D1063 /* CollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionController.h; sourceTree = "<group>"; };
+		41B1F6A91A9B2268004D1063 /* CollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionController.m; sourceTree = "<group>"; };
+		41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDataSource.h; sourceTree = "<group>"; };
+		41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDataSource.m; sourceTree = "<group>"; };
+		41B1F6AE1A9B2360004D1063 /* CollectionCircleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCircleCell.h; sourceTree = "<group>"; };
+		41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCircleCell.m; sourceTree = "<group>"; };
+		41B1F6B11A9B2428004D1063 /* CollectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDelegate.h; sourceTree = "<group>"; };
+		41B1F6B21A9B2428004D1063 /* CollectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDelegate.m; sourceTree = "<group>"; };
+		41B1F6B41A9B2995004D1063 /* CollectionCircleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCircleLayout.h; sourceTree = "<group>"; };
+		41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCircleLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +95,16 @@
 			children = (
 				41B1F6861A9B2228004D1063 /* AppDelegate.h */,
 				41B1F6871A9B2228004D1063 /* AppDelegate.m */,
-				41B1F6891A9B2228004D1063 /* ViewController.h */,
-				41B1F68A1A9B2228004D1063 /* ViewController.m */,
+				41B1F6B41A9B2995004D1063 /* CollectionCircleLayout.h */,
+				41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */,
+				41B1F6AE1A9B2360004D1063 /* CollectionCircleCell.h */,
+				41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */,
+				41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */,
+				41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */,
+				41B1F6B11A9B2428004D1063 /* CollectionDelegate.h */,
+				41B1F6B21A9B2428004D1063 /* CollectionDelegate.m */,
+				41B1F6A81A9B2268004D1063 /* CollectionController.h */,
+				41B1F6A91A9B2268004D1063 /* CollectionController.m */,
 				41B1F68C1A9B2228004D1063 /* Main.storyboard */,
 				41B1F68F1A9B2228004D1063 /* Images.xcassets */,
 				41B1F6911A9B2228004D1063 /* LaunchScreen.xib */,
@@ -219,9 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41B1F68B1A9B2228004D1063 /* ViewController.m in Sources */,
+				41B1F6B01A9B2360004D1063 /* CollectionCircleCell.m in Sources */,
+				41B1F6B31A9B2428004D1063 /* CollectionDelegate.m in Sources */,
+				41B1F6AD1A9B22AF004D1063 /* CollectionDataSource.m in Sources */,
+				41B1F6AA1A9B2268004D1063 /* CollectionController.m in Sources */,
 				41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */,
 				41B1F6851A9B2228004D1063 /* main.m in Sources */,
+				41B1F6B61A9B2995004D1063 /* CollectionCircleLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

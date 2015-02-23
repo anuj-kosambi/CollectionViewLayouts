@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollectionController.h"
+#import "CollectionCircleLayout.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

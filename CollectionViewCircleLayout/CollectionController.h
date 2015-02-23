@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CollectionController.h
 //  CollectionViewCircleLayout
 //
 //  Created by AnujKosambi on 23/02/15.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollectionCircleCell.h"
 
-@interface ViewController : UIViewController
-
+@interface CollectionController : UICollectionViewController
 
 @end
-
