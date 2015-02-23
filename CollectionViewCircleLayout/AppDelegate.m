@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    CollectionCircleLayout *circleLayout = [[CollectionCircleLayout alloc] init];
+    CollectionAlbumLayout *circleLayout = [[CollectionAlbumLayout alloc] init];
     colletionController = [[CollectionController alloc]initWithCollectionViewLayout:circleLayout];
     collectionDataSource = [[CollectionDataSource alloc] init];
     colletionController.collectionView.dataSource = collectionDataSource;

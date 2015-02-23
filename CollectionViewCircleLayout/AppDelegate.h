@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CollectionController.h"
-#import "CollectionCircleLayout.h"
+#import "CollectionAlbumLayout.h"
 #import "CollectionDataSource.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

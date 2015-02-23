@@ -15,8 +15,8 @@
 		41B1F69F1A9B2228004D1063 /* CollectionViewCircleLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F69E1A9B2228004D1063 /* CollectionViewCircleLayoutTests.m */; };
 		41B1F6AA1A9B2268004D1063 /* CollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6A91A9B2268004D1063 /* CollectionController.m */; };
 		41B1F6AD1A9B22AF004D1063 /* CollectionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */; };
-		41B1F6B01A9B2360004D1063 /* CollectionCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */; };
-		41B1F6B61A9B2995004D1063 /* CollectionCircleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */; };
+		41B1F6B01A9B2360004D1063 /* CollectionAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6AF1A9B2360004D1063 /* CollectionAlbumCell.m */; };
+		41B1F6B61A9B2995004D1063 /* CollectionAlbumLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6B51A9B2995004D1063 /* CollectionAlbumLayout.m */; };
 		41B1F6CC1A9B3112004D1063 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6B81A9B3112004D1063 /* 1.jpg */; };
 		41B1F6CD1A9B3112004D1063 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6B91A9B3112004D1063 /* 10.jpg */; };
 		41B1F6CE1A9B3112004D1063 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6BA1A9B3112004D1063 /* 11.jpg */; };
@@ -65,10 +65,10 @@
 		41B1F6A91A9B2268004D1063 /* CollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionController.m; sourceTree = "<group>"; };
 		41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDataSource.h; sourceTree = "<group>"; };
 		41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDataSource.m; sourceTree = "<group>"; };
-		41B1F6AE1A9B2360004D1063 /* CollectionCircleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCircleCell.h; sourceTree = "<group>"; };
-		41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCircleCell.m; sourceTree = "<group>"; };
-		41B1F6B41A9B2995004D1063 /* CollectionCircleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCircleLayout.h; sourceTree = "<group>"; };
-		41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCircleLayout.m; sourceTree = "<group>"; };
+		41B1F6AE1A9B2360004D1063 /* CollectionAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionAlbumCell.h; sourceTree = "<group>"; };
+		41B1F6AF1A9B2360004D1063 /* CollectionAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionAlbumCell.m; sourceTree = "<group>"; };
+		41B1F6B41A9B2995004D1063 /* CollectionAlbumLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionAlbumLayout.h; sourceTree = "<group>"; };
+		41B1F6B51A9B2995004D1063 /* CollectionAlbumLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionAlbumLayout.m; sourceTree = "<group>"; };
 		41B1F6B81A9B3112004D1063 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		41B1F6B91A9B3112004D1063 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
 		41B1F6BA1A9B3112004D1063 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
@@ -133,10 +133,10 @@
 				41B1F6B71A9B30FB004D1063 /* Images */,
 				41B1F6861A9B2228004D1063 /* AppDelegate.h */,
 				41B1F6871A9B2228004D1063 /* AppDelegate.m */,
-				41B1F6B41A9B2995004D1063 /* CollectionCircleLayout.h */,
-				41B1F6B51A9B2995004D1063 /* CollectionCircleLayout.m */,
-				41B1F6AE1A9B2360004D1063 /* CollectionCircleCell.h */,
-				41B1F6AF1A9B2360004D1063 /* CollectionCircleCell.m */,
+				41B1F6B41A9B2995004D1063 /* CollectionAlbumLayout.h */,
+				41B1F6B51A9B2995004D1063 /* CollectionAlbumLayout.m */,
+				41B1F6AE1A9B2360004D1063 /* CollectionAlbumCell.h */,
+				41B1F6AF1A9B2360004D1063 /* CollectionAlbumCell.m */,
 				41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */,
 				41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */,
 				41B1F6A81A9B2268004D1063 /* CollectionController.h */,
@@ -322,12 +322,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41B1F6B01A9B2360004D1063 /* CollectionCircleCell.m in Sources */,
+				41B1F6B01A9B2360004D1063 /* CollectionAlbumCell.m in Sources */,
 				41B1F6AD1A9B22AF004D1063 /* CollectionDataSource.m in Sources */,
 				41B1F6AA1A9B2268004D1063 /* CollectionController.m in Sources */,
 				41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */,
 				41B1F6851A9B2228004D1063 /* main.m in Sources */,
-				41B1F6B61A9B2995004D1063 /* CollectionCircleLayout.m in Sources */,
+				41B1F6B61A9B2995004D1063 /* CollectionAlbumLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +520,7 @@
 				41B1F6A41A9B2228004D1063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41B1F6A51A9B2228004D1063 /* Build configuration list for PBXNativeTarget "CollectionViewCircleLayoutTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +529,7 @@
 				41B1F6A71A9B2228004D1063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
