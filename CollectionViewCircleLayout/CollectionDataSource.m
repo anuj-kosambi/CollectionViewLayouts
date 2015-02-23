@@ -9,17 +9,17 @@
 #import "CollectionDataSource.h"
 
 @interface CollectionDataSource ()  {
-    
+    NSInteger CellCount;
 }
 
 @end
 
 @implementation CollectionDataSource
 
--(instancetype)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
-
+        CellCount = 20;
     }
     return self;
 }
@@ -32,7 +32,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return CellCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
