@@ -35,19 +35,23 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)handleTap:(UITapGestureRecognizer *)sender {
     CGPoint touchPoint = [sender locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
+    CollectionDataSource *dataSource = self.collectionView.dataSource;
     if (indexPath) {
-
         [self.collectionView performBatchUpdates:^{
-                CollectionDataSource *dataSource = self.collectionView.dataSource;
-                dataSource.CellCount = dataSource.CellCount - 1;
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            dataSource.CellCount = dataSource.CellCount - 1;
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         } completion:^(BOOL finished){
-            
         }];
 
     } else {
-        
-    }
+        [self.collectionView performBatchUpdates:^{
+            dataSource.CellCount = dataSource.CellCount + 1;
+            NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:dataSource.CellCount - 1  inSection:0];
+            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+        } completion:^(BOOL finished) {
+            
+        }];
+          }
 }
 
 - (void)didReceiveMemoryWarning {
