@@ -8,22 +8,36 @@
 
 #import "CollectionDataSource.h"
 
+@interface CollectionDataSource ()  {
+    
+}
+
+@end
+
 @implementation CollectionDataSource
+
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
+}
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+    return 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CircleCellResuseIdentifier forIndexPath:indexPath];
-
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     
     return cell;
 }

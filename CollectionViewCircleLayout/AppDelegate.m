@@ -10,6 +10,7 @@
 
 @interface AppDelegate () {
     CollectionController *colletionController;
+    CollectionDataSource *collectionDataSource;
 }
 
 @end
@@ -19,8 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    CollectionCircleLayout *circleLayout = [[CollectionCircleLayout alloc] init];
+    colletionController = [[CollectionController alloc]initWithCollectionViewLayout:circleLayout];
+    collectionDataSource = [[CollectionDataSource alloc] init];
+    colletionController.collectionView.dataSource = collectionDataSource;
+    colletionController.collectionView.delegate = circleLayout;
+
     
-    colletionController = [[CollectionController alloc]initWithCollectionViewLayout:[[CollectionCircleLayout alloc]init]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = colletionController;
     return YES;
