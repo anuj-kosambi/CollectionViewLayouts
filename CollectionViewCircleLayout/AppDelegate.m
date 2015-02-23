@@ -1,6 +1,5 @@
 //
 //  AppDelegate.m
-//  CollectionViewCircleLayout
 //
 //  Created by AnujKosambi on 23/02/15.
 //  Copyright (c) 2015 AnujKosambi. All rights reserved.
@@ -20,11 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    CollectionCircleLayout *circleLayout = [[CollectionCircleLayout alloc] init];
-    colletionController = [[CollectionController alloc]initWithCollectionViewLayout:circleLayout];
+    CollectionSimpleLayout *simpleLayout = [[CollectionSimpleLayout alloc] init];
+    colletionController = [[CollectionController alloc]initWithCollectionViewLayout:simpleLayout];
     collectionDataSource = [[CollectionDataSource alloc] init];
     colletionController.collectionView.dataSource = collectionDataSource;
-    colletionController.collectionView.delegate = circleLayout;
+    colletionController.collectionView.delegate = simpleLayout;
 
     
     

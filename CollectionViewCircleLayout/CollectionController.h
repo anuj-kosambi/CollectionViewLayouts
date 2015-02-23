@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CollectionCircleCell.h"
+#import "CollectionSimpleCell.h"
 
 @interface CollectionController : UICollectionViewController
 
