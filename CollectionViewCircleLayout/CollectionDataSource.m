@@ -9,12 +9,14 @@
 #import "CollectionDataSource.h"
 
 @interface CollectionDataSource ()  {
-    NSMutableArray *imageArray;
+
 }
 
 @end
 
 @implementation CollectionDataSource
+
+@synthesize imageArray, CellCount;
 
 -(instancetype)init {
     self = [super init];
@@ -23,6 +25,7 @@
         for (int i = 1; i <= 20; i++) {
             [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
         }
+        CellCount = [imageArray count];
     }
     return self;
 }
@@ -35,7 +38,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [imageArray count];
+    return CellCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

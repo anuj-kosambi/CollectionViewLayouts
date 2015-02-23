@@ -12,4 +12,7 @@
 
 @interface CollectionDataSource : NSObject <UICollectionViewDataSource>
 
+@property (nonatomic, strong) NSMutableArray *imageArray;
+@property NSInteger CellCount;
+
 @end

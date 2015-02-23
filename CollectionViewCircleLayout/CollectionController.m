@@ -7,6 +7,7 @@
 //
 
 #import "CollectionController.h"
+#import "CollectionDataSource.h"
 
 @interface CollectionController ()
 
@@ -35,7 +36,15 @@ static NSString * const reuseIdentifier = @"Cell";
     CGPoint touchPoint = [sender locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
     if (indexPath) {
-        
+
+        [self.collectionView performBatchUpdates:^{
+                CollectionDataSource *dataSource = self.collectionView.dataSource;
+                dataSource.CellCount = dataSource.CellCount - 1;
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        } completion:^(BOOL finished){
+            
+        }];
+
     } else {
         
     }
