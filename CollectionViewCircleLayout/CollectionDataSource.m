@@ -25,7 +25,7 @@
         for (int i = 1; i <= 20; i++) {
             [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
         }
-        CellCount = [imageArray count];
+        CellCount = 5;
     }
     return self;
 }

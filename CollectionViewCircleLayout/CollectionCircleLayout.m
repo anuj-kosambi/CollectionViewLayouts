@@ -20,7 +20,7 @@
 @implementation CollectionCircleLayout
 
 - (void)prepareLayout {
-    [super prepareLayout];
+[super prepareLayout];
     CGSize size = self.collectionView.frame.size;
     cellCount = [self.collectionView numberOfItemsInSection:0];
     centerPoint = CGPointMake(size.width / 2.0, size.height / 2.0);
@@ -48,4 +48,17 @@
     return attributes;
 }
 
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+    if (itemIndexPath.item == cellCount - 1) {
+        attributes.center = centerPoint;
+        attributes.alpha = 0;
+    }
+    return attributes;
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath  {
+    UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];                         
+    return attributes;
+}
 @end

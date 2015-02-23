@@ -37,21 +37,19 @@ static NSString * const reuseIdentifier = @"Cell";
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:touchPoint];
     CollectionDataSource *dataSource = self.collectionView.dataSource;
     if (indexPath) {
+      dataSource.CellCount = dataSource.CellCount - 1;
         [self.collectionView performBatchUpdates:^{
-            dataSource.CellCount = dataSource.CellCount - 1;
+          
             [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-        } completion:^(BOOL finished){
-        }];
+        } completion:nil];
 
     } else {
+        dataSource.CellCount = dataSource.CellCount + 1;
         [self.collectionView performBatchUpdates:^{
-            dataSource.CellCount = dataSource.CellCount + 1;
             NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:dataSource.CellCount - 1  inSection:0];
             [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-        } completion:^(BOOL finished) {
-            
-        }];
-          }
+        } completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
