@@ -10,6 +10,7 @@
 
 @interface CollectionDataSource ()  {
     NSInteger CellCount;
+    NSMutableArray *imageArray;
 }
 
 @end
@@ -18,8 +19,12 @@
 
 - (instancetype)init {
     self = [super init];
+    imageArray = [NSMutableArray array];
     if (self) {
-        CellCount = 5;
+        for (int i = 1; i <= 20; i++) {
+            [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
+        }
+        CellCount = 20;
     }
     return self;
 }
@@ -36,8 +41,8 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CircleCellResuseIdentifier forIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    CollectionAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:AlbumCellResuseIdentifier forIndexPath:indexPath];
+    cell.imageView.image = [imageArray objectAtIndex:(indexPath.row % [imageArray count])];
 
     return cell;
 }

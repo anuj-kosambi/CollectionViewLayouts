@@ -7,8 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-#define CircleCellResuseIdentifier @"circleCellReuseIdentifier"
+#define AlbumCellResuseIdentifier @"albumCellReuseIdentifier"
 
 @interface CollectionAlbumCell : UICollectionViewCell
+
+@property (nonatomic, strong) UIImageView* imageView;
 
 @end
