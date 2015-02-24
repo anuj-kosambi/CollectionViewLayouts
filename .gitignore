@@ -2,3 +2,9 @@
 *.png
 *.jpeg
 *.xcbkptlist
+Pods/*
+Podfile*
+CollectionViewCircleLayout.xcworkspace/
+CollectionViewCircleLayout.xcworkspace/*
+CollectionViewCircleLayout.xcodeproj/xcuserdata/anujkosambi.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+

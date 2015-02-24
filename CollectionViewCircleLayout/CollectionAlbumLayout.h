@@ -9,4 +9,7 @@
 
 @interface CollectionAlbumLayout : UICollectionViewLayout 
 
+@property (nonatomic) CGFloat pinchScale;
+@property (nonatomic) NSIndexPath *pinchedIndexPath;
+
 @end

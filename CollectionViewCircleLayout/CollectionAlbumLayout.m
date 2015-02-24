@@ -21,7 +21,7 @@
     NSInteger SectionCount;
     NSInteger minCellWidth;
     NSInteger kScreenWidth;
-    NSInteger kScreenHeight;
+    NSInteger kScreenHeight;    
     NSInteger lastItemBottom;
     NSMutableArray *itemAttributes;
     NSMutableArray *decorationAttributes;
@@ -33,19 +33,23 @@
 
 @implementation CollectionAlbumLayout
 
+@synthesize pinchScale, pinchedIndexPath;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self registerClass:[CollectionDecorationView class] forDecorationViewOfKind:decorationViewKind];
     }
-    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
-    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
-    minCellWidth = kCellWidth;//kScreenWidth / 4;
+    pinchScale = 1;
     return  self;
 }
 
 - (void)prepareLayout {
     [super prepareLayout];
+    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
+    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
+    minCellWidth = kCellWidth;//kScreenWidth / 4;
+
     SectionCount = [self.collectionView numberOfSections];
     contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height);
     upperSpaceAttributes = [NSMutableArray array];
@@ -108,7 +112,10 @@
     //Updating attributes in the upperSpaceAttributes for nextAllignment
     attributes.frame = CGRectMake(cellPositionX, cellPositionY + kLineSpacing + extraPaddingTop, attributes.frame.size.width, attributes.frame.size.height);
     [self updateAttributeForUpperSpaceAttributes:attributes];
-    
+    if ([attributes.indexPath isEqual: pinchedIndexPath]) {
+        attributes.transform3D =  CATransform3DMakeScale(pinchScale, pinchScale, 1.0);
+        attributes.zIndex = 1;
+    }
     lastItemBottom = MAX(attributes.frame.origin.y + attributes.frame.size.height, lastItemBottom);
     return attributes;
 }
@@ -121,6 +128,14 @@
     decoAttributes.frame = attributesForItem.frame;
 
     return decoAttributes;
+
+}
+
+#pragma mark - Pinch Scale Setter
+
+- (void)setPinchScale:(CGFloat)scale {
+    pinchScale = scale;
+    [self invalidateLayout];
 }
 
 #pragma mark - Helper
