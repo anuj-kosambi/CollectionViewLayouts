@@ -6,6 +6,7 @@
 
 #import "CollectionAlbumLayout.h"
 #import "CollectionDataSource.h"
+#import "CollectionDecorationView.h"
 
 #define kCellWidth 100
 #define kCellHeight 100
@@ -13,7 +14,7 @@
 #define kLeftMargin 0
 #define kRightMargin 0
 #define kInterSpacing 0
-
+#define decorationViewKind @"ImageTitle"
 
 @interface CollectionAlbumLayout () {
     NSInteger SectionCount;
@@ -22,6 +23,7 @@
     NSInteger kScreenHeight;
     NSInteger lastItemBottom;
     NSMutableArray *itemAttributes;
+    NSMutableArray *decorationAttributes;
     NSMutableArray *upperSpaceAttributes;
     CGSize contentSize;
 }
@@ -29,6 +31,14 @@
 @end
 
 @implementation CollectionAlbumLayout
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self registerClass:[CollectionDecorationView class] forDecorationViewOfKind:decorationViewKind];
+    }
+    return  self;
+}
 
 - (void)prepareLayout {
     [super prepareLayout];
@@ -45,7 +55,8 @@
         [upperSpaceAttributes addObject:[NSValue valueWithCGRect:CGRectZero]];
     }
     
-    itemAttributes = [self makeAllAttributes];
+    itemAttributes = [self makeAllItemAttributes];
+    decorationAttributes = [self makeAllDecorationAttributes];
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
@@ -64,17 +75,22 @@
             [arrayOfAttributesInScreen addObject:attributes];
         }
     }
+    for (UICollectionViewLayoutAttributes *attributes in decorationAttributes) {
+        if ( CGRectIntersectsRect(rect, attributes.frame) ) {
+            [arrayOfAttributesInScreen addObject:attributes];
+        }
+    }
+    
     return arrayOfAttributesInScreen;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    
     int itemWidth = [self getWidthForItemAtIndexPath:indexPath];
     int itemHeight = [self getHeightForItemAtIndexPath:indexPath];
     
     attributes.frame = CGRectMake(0, 0, itemWidth, itemHeight);
-    
+
     int cellPositionY = 0;
     int extraPaddingTop = 0;
     int cellPositionX = [self gettingXCoordsFormAttributes:attributes];
@@ -99,19 +115,37 @@
     return attributes;
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes *attributesForItem  = [itemAttributes objectAtIndex:indexPath.item];
+    UICollectionViewLayoutAttributes *decoAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
+    decoAttributes.frame = CGRectMake (attributesForItem.frame.origin.x, attributesForItem.frame.origin.y + attributesForItem.frame.size.height * 0.8
+                                       , attributesForItem.frame.size.width , 20);
+
+    return decoAttributes;
+}
+
 #pragma mark - Helper
 
-- (NSMutableArray *)makeAllAttributes {
+- (NSMutableArray *)makeAllItemAttributes {
     NSMutableArray *attributes = [NSMutableArray array];
     for (int j = 0; j < SectionCount; j++) {
         for ( int i = 0; i < [self.collectionView numberOfItemsInSection:j]; i++ ) {
             UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:j]];
             [attributes addObject:attrib];
-            
-            
         }
     }
     return  attributes;
+}
+
+- (NSMutableArray *)makeAllDecorationAttributes {
+    NSMutableArray *decoAttributes = [NSMutableArray array];
+    for (int j = 0; j < SectionCount; j++) {
+        for ( int i = 0; i < [self.collectionView numberOfItemsInSection:j]; i++ ) {
+            UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForDecorationViewOfKind:decorationViewKind atIndexPath:[NSIndexPath indexPathForItem:i inSection:j]];
+            [decoAttributes addObject:attrib];
+            }
+    }
+    return  decoAttributes;
 }
 
 - (int)gettingXCoordsFormAttributes:(UICollectionViewLayoutAttributes *)attributes {//maxYCoords:(int *)cellBottomY {
@@ -153,7 +187,7 @@
 }
 
 - (int)getWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 4 == 0) {
+    if (indexPath.row % 3 == 0) {
         return (int) minCellWidth * 2;
     } else {
         return (int) minCellWidth;
@@ -161,7 +195,7 @@
 }
 
 - (int)getHeightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 4 == 0) {
+    if (indexPath.row % 3 == 0) {
         return (int) minCellWidth * 2;
     } else {
         return (int) minCellWidth;

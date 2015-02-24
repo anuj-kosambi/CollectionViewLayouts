@@ -43,8 +43,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:AlbumCellResuseIdentifier forIndexPath:indexPath];
     cell.imageView.image = [imageArray objectAtIndex:(indexPath.row % [imageArray count])];
-
     return cell;
 }
+
 
 @end

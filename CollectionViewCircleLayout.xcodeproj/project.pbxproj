@@ -37,6 +37,7 @@
 		41B1F6DD1A9B3112004D1063 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6C91A9B3112004D1063 /* 7.jpg */; };
 		41B1F6DE1A9B3112004D1063 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6CA1A9B3112004D1063 /* 8.jpg */; };
 		41B1F6DF1A9B3112004D1063 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F6CB1A9B3112004D1063 /* 9.jpg */; };
+		41B1F6E21A9C8CB9004D1063 /* CollectionDecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6E11A9C8CB9004D1063 /* CollectionDecorationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		41B1F6C91A9B3112004D1063 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		41B1F6CA1A9B3112004D1063 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		41B1F6CB1A9B3112004D1063 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		41B1F6E01A9C8CB9004D1063 /* CollectionDecorationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDecorationView.h; sourceTree = "<group>"; };
+		41B1F6E11A9C8CB9004D1063 /* CollectionDecorationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDecorationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				41B1F6B51A9B2995004D1063 /* CollectionAlbumLayout.m */,
 				41B1F6AE1A9B2360004D1063 /* CollectionAlbumCell.h */,
 				41B1F6AF1A9B2360004D1063 /* CollectionAlbumCell.m */,
+				41B1F6E01A9C8CB9004D1063 /* CollectionDecorationView.h */,
+				41B1F6E11A9C8CB9004D1063 /* CollectionDecorationView.m */,
 				41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */,
 				41B1F6AC1A9B22AF004D1063 /* CollectionDataSource.m */,
 				41B1F6A81A9B2268004D1063 /* CollectionController.h */,
@@ -326,6 +331,7 @@
 				41B1F6AD1A9B22AF004D1063 /* CollectionDataSource.m in Sources */,
 				41B1F6AA1A9B2268004D1063 /* CollectionController.m in Sources */,
 				41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */,
+				41B1F6E21A9C8CB9004D1063 /* CollectionDecorationView.m in Sources */,
 				41B1F6851A9B2228004D1063 /* main.m in Sources */,
 				41B1F6B61A9B2995004D1063 /* CollectionAlbumLayout.m in Sources */,
 			);
