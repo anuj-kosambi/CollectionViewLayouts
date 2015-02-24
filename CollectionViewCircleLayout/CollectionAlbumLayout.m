@@ -8,6 +8,7 @@
 #import "CollectionDataSource.h"
 #import "CollectionDecorationView.h"
 
+
 #define kCellWidth 100
 #define kCellHeight 100
 #define kLineSpacing 0
@@ -37,24 +38,20 @@
     if (self) {
         [self registerClass:[CollectionDecorationView class] forDecorationViewOfKind:decorationViewKind];
     }
+    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
+    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
+    minCellWidth = kCellWidth;//kScreenWidth / 4;
     return  self;
 }
 
 - (void)prepareLayout {
     [super prepareLayout];
-
-    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
-    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
-    minCellWidth = kScreenWidth / 4;
     SectionCount = [self.collectionView numberOfSections];
     contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height);
-    
     upperSpaceAttributes = [NSMutableArray array];
-    
     for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
         [upperSpaceAttributes addObject:[NSValue valueWithCGRect:CGRectZero]];
     }
-    
     itemAttributes = [self makeAllItemAttributes];
     decorationAttributes = [self makeAllDecorationAttributes];
 }
@@ -70,6 +67,7 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSMutableArray *arrayOfAttributesInScreen = [NSMutableArray array];
+    
     for (UICollectionViewLayoutAttributes *attributes in itemAttributes) {
         if ( CGRectIntersectsRect(rect, attributes.frame) ) {
             [arrayOfAttributesInScreen addObject:attributes];
@@ -118,8 +116,9 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attributesForItem  = [itemAttributes objectAtIndex:indexPath.item];
     UICollectionViewLayoutAttributes *decoAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
-    decoAttributes.frame = CGRectMake (attributesForItem.frame.origin.x, attributesForItem.frame.origin.y + attributesForItem.frame.size.height * 0.8
-                                       , attributesForItem.frame.size.width , 20);
+//    decoAttributes.frame = CGRectMake (attributesForItem.frame.origin.x, attributesForItem.frame.origin.y + CGRectGetHeight(attributesForItem.frame) * 0.8
+//                                       ,CGRectGetWidth(attributesForItem.frame) ,  CGRectGetHeight(attributesForItem.frame));
+    decoAttributes.frame = attributesForItem.frame;
 
     return decoAttributes;
 }
@@ -180,6 +179,7 @@
 }
 
 - (void)updateAttributeForUpperSpaceAttributes:(UICollectionViewLayoutAttributes *)attributes {
+
     for (int i = attributes.frame.origin.x; i < attributes.frame.origin.x + attributes.frame.size.width; i += minCellWidth) {
         [upperSpaceAttributes replaceObjectAtIndex:(i / minCellWidth) withObject:[NSValue valueWithCGRect: attributes.frame]];
     }

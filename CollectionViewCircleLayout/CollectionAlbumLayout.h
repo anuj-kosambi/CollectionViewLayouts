@@ -7,6 +7,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CollectionAlbumLayout : UICollectionViewLayout <UICollectionViewDelegateFlowLayout>
+@interface CollectionAlbumLayout : UICollectionViewLayout 
 
 @end

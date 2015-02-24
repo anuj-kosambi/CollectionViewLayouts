@@ -15,7 +15,7 @@
     if (self) {
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         self.imageView.layer.borderWidth = 2;
-        self.imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.imageView.alpha = 1;
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
         [self.contentView addSubview:self.imageView];
@@ -24,9 +24,10 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.imageView.frame = self.bounds;
     self.imageView.layer.borderWidth = 2;
-    self.imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void)prepareForReuse {
