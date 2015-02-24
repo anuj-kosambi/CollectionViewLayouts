@@ -24,7 +24,7 @@
         for (int i = 1; i <= 20; i++) {
             [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
         }
-        CellCount = 20;
+        CellCount = 5;
     }
     return self;
 }
@@ -32,12 +32,15 @@
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return CellCount;
+    if (section == 0)
+        return 10;
+    else
+        return 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

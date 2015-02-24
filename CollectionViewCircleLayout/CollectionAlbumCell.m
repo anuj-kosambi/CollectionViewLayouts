@@ -16,7 +16,7 @@
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imageView.layer.borderWidth = 2;
         self.imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        self.imageView.alpha = 0.75;
+        self.imageView.alpha = 0.5;
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
         [self.contentView addSubview:self.imageView];
     }

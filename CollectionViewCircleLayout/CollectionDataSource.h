@@ -11,5 +11,4 @@
 
 @interface CollectionDataSource: NSObject <UICollectionViewDataSource>
 
-
 @end
