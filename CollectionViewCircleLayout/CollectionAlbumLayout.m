@@ -32,7 +32,7 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
-
+    lastItemBottom = 0;
     kScreenWidth = [UIScreen mainScreen].bounds.size.width;
     kScreenHeight = [UIScreen mainScreen].bounds.size.height;
     minCellWidth = kScreenWidth / 4;
@@ -177,15 +177,18 @@
 }
 
 - (void)updateUpperRectForNewSection:(NSIndexPath *)indexPath {
+    NSNumber *nextSection = [NSNumber numberWithLong:(indexPath.section+1)];
     if (indexPath.item + 1 == [self.collectionView numberOfItemsInSection:indexPath.section]
-        && indexPath.section < SectionCount )
+        && indexPath.section + 1 < SectionCount )
     {
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
-            CGRect upperSectionRect = CGRectMake(0, lastItemBottom + 100, 0, 0);
-            [array addObject:[NSValue valueWithCGRect:upperSectionRect]];
+        if ([upperSpaceAttributesForSection objectForKey:nextSection] == nil) {
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
+                CGRect upperSectionRect = CGRectMake(0, lastItemBottom + 100, 0, 0);
+                [array addObject:[NSValue valueWithCGRect:upperSectionRect]];
+            }
+            [upperSpaceAttributesForSection setObject:array forKey:nextSection];
         }
-        [upperSpaceAttributesForSection setObject:array forKey:[NSNumber numberWithLong:(indexPath.section+1)]];
     }
 }
 
