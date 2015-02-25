@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		411457651A9DC47B005325CB /* CollectionSupplementaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 411457641A9DC47B005325CB /* CollectionSupplementaryView.m */; };
 		41B1F6851A9B2228004D1063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6841A9B2228004D1063 /* main.m */; };
 		41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B1F6871A9B2228004D1063 /* AppDelegate.m */; };
 		41B1F68E1A9B2228004D1063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B1F68C1A9B2228004D1063 /* Main.storyboard */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		411457631A9DC47B005325CB /* CollectionSupplementaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionSupplementaryView.h; sourceTree = "<group>"; };
+		411457641A9DC47B005325CB /* CollectionSupplementaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionSupplementaryView.m; sourceTree = "<group>"; };
 		41B1F67F1A9B2227004D1063 /* CollectionViewCircleLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewCircleLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B1F6831A9B2228004D1063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B1F6841A9B2228004D1063 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				41B1F6871A9B2228004D1063 /* AppDelegate.m */,
 				41B1F6B41A9B2995004D1063 /* CollectionAlbumLayout.h */,
 				41B1F6B51A9B2995004D1063 /* CollectionAlbumLayout.m */,
+				411457631A9DC47B005325CB /* CollectionSupplementaryView.h */,
+				411457641A9DC47B005325CB /* CollectionSupplementaryView.m */,
 				41B1F6AE1A9B2360004D1063 /* CollectionAlbumCell.h */,
 				41B1F6AF1A9B2360004D1063 /* CollectionAlbumCell.m */,
 				41B1F6AB1A9B22AF004D1063 /* CollectionDataSource.h */,
@@ -328,6 +333,7 @@
 				41B1F6881A9B2228004D1063 /* AppDelegate.m in Sources */,
 				41B1F6851A9B2228004D1063 /* main.m in Sources */,
 				41B1F6B61A9B2995004D1063 /* CollectionAlbumLayout.m in Sources */,
+				411457651A9DC47B005325CB /* CollectionSupplementaryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "CollectionAlbumCell.h"
-
+#import "CollectionSupplementaryView.h"
 @interface CollectionDataSource: NSObject <UICollectionViewDataSource>
 
 @end

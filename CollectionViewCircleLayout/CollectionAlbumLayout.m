@@ -9,12 +9,12 @@
 
 #define kCellWidth 100
 #define kCellHeight 100
-#define kLineSpacing 2
+#define kLineSpacing 5
 #define kLeftMargin 10
 #define kRightMargin 10
-#define kInterSpacing 2
-#define kHeaderHeight 0
-#define kFooterHeight 50
+#define kInterSpacing 5
+#define kHeaderHeight 50
+#define kFooterHeight 0
 
 @interface CollectionAlbumLayout () {
     NSInteger SectionCount;
@@ -23,6 +23,7 @@
     NSInteger kScreenHeight;
     NSInteger lastItemBottom;
     NSMutableArray *itemAttributes;
+    NSMutableArray *headerAttributes;
     NSMutableDictionary *upperSpaceAttributesForSection;
     CGSize contentSize;
 }
@@ -34,7 +35,7 @@
 #pragma mark - CellSize
 
 - (int)getWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.row + 1) % 4 == 0) {
+    if (indexPath.item  % 3 == 0) {
         return (int) minCellWidth * 2;
     } else {
         return (int) minCellWidth;
@@ -42,7 +43,7 @@
 }
 
 - (int)getHeightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.row + 1) % 4 == 0) {
+    if (indexPath.item  % 3 == 0) {
         return (int) minCellWidth * 2;
     } else {
         return (int) minCellWidth;
@@ -63,10 +64,12 @@
     upperSpaceAttributesForSection = [[NSMutableDictionary alloc] init];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
-        [array addObject:[NSValue valueWithCGRect:CGRectZero]];
+        CGRect sectionHeaderRect = CGRectMake(0, lastItemBottom + kHeaderHeight + kFooterHeight, 0, 0);
+        [array addObject:[NSValue valueWithCGRect:sectionHeaderRect]];
     }
     [upperSpaceAttributesForSection setObject:array forKey:[NSNumber numberWithLong:0]];
-    itemAttributes = [self makeAllAttributes];
+    itemAttributes = [self makeAllItemAttributes];
+    headerAttributes = [self makeAllHeaderAttributes];
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
@@ -82,6 +85,13 @@
     NSMutableArray *arrayOfAttributesInScreen = [NSMutableArray array];
     for (UICollectionViewLayoutAttributes *attributes in itemAttributes) {
         if ( CGRectIntersectsRect(rect, attributes.frame) ) {
+            [arrayOfAttributesInScreen addObject:attributes];
+        }
+    }
+    
+    for (UICollectionViewLayoutAttributes *attributes in headerAttributes)
+    {
+        if (CGRectIntersectsRect(rect,attributes.frame) ) {
             [arrayOfAttributesInScreen addObject:attributes];
         }
     }
@@ -101,11 +111,9 @@
     int cellPositionX = [self gettingXCoordsFormAttributes:attributes];
     
     //Getting Y coords from upperSpaceAttributes
-//    if([upperSpaceAttributesForSection count] == kScreenWidth / minCellWidth) {
-        NSArray *array = [self getUpperAttributesArrayForSection:attributes.indexPath.section];
-        CGRect upperCell = [(NSValue *)[array objectAtIndex: cellPositionX / minCellWidth ] CGRectValue];
-        cellPositionY = upperCell.size.height + upperCell.origin.y;
-//    }
+    NSArray *array = [self getUpperAttributesArrayForSection:attributes.indexPath.section];
+    CGRect upperCell = [(NSValue *)[array objectAtIndex: cellPositionX / minCellWidth ] CGRectValue];
+    cellPositionY = upperCell.size.height + upperCell.origin.y;
     
     //Adding Extra Top Padding
     for (int i = cellPositionX; i < cellPositionX + attributes.size.width; i += minCellWidth  ) {
@@ -123,15 +131,39 @@
     return attributes;
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    int originY;
+    if (indexPath.section == 0 ) {
+        originY = 0;
+    }
+    else {
+    NSArray *array = [self getUpperAttributesArrayForSection:attributes.indexPath.section - 1];
+    CGRect upperCell = [(NSValue *)[array objectAtIndex: 0 ] CGRectValue];
+    originY = upperCell.origin.y + upperCell.size.height;
+    }
+    attributes.frame = CGRectMake(0, originY + kLineSpacing, CGRectGetWidth(self.collectionView.frame), kHeaderHeight);
+    return attributes;
+}
+
 #pragma mark - Helper
 
-- (NSMutableArray *)makeAllAttributes {
+- (NSMutableArray *)makeAllItemAttributes {
     NSMutableArray *attributes = [NSMutableArray array];
     for (int j = 0; j < SectionCount; j++) {
         for ( int i = 0; i < [self.collectionView numberOfItemsInSection:j]; i++ ) {
             UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:j]];
             [attributes addObject:attrib];
         }
+    }
+    return  attributes;
+}
+
+- (NSMutableArray *)makeAllHeaderAttributes {
+    NSMutableArray *attributes = [NSMutableArray array];
+    for (int j = 0; j < SectionCount; j++) {
+        UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForSupplementaryViewOfKind:AlbumHeaderSupplyKind atIndexPath:[NSIndexPath indexPathForItem:0 inSection:j]];
+            [attributes addObject:attrib];
     }
     return  attributes;
 }
@@ -189,7 +221,7 @@
         if ([upperSpaceAttributesForSection objectForKey:nextSection] == nil) {
             NSMutableArray *array = [[NSMutableArray alloc] init];
             for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
-                CGRect upperSectionRect = CGRectMake(0, lastItemBottom + kHeaderHeight + kFooterHeight, 0, 0);
+                CGRect upperSectionRect = CGRectMake(0, lastItemBottom + 2 * kLineSpacing + kHeaderHeight + kFooterHeight, 0, 0);
                 [array addObject:[NSValue valueWithCGRect:upperSectionRect]];
             }
             [upperSpaceAttributesForSection setObject:array forKey:nextSection];

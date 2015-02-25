@@ -38,7 +38,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0)
-        return 100;
+        return 5;
     else if (section == 1)
         return 20;
     else
@@ -50,6 +50,15 @@
     cell.imageView.image = [imageArray objectAtIndex:(indexPath.row % [imageArray count])];
 
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    CollectionSupplementaryView *supplyView;
+    if ([kind isEqual:AlbumHeaderSupplyKind]) {
+        supplyView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:AlbumSupplyResuseIdentifier forIndexPath:indexPath];
+        
+    }
+    return supplyView;
 }
 
 @end

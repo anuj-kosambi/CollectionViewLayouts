@@ -25,7 +25,8 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[CollectionAlbumCell class] forCellWithReuseIdentifier:AlbumCellResuseIdentifier];
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView registerClass:[CollectionSupplementaryView class] forSupplementaryViewOfKind:@"Header" withReuseIdentifier:AlbumSupplyResuseIdentifier];
+    [self.collectionView setBackgroundColor:[UIColor blackColor]];
     // Do any additional setup after loading the view.
 }
 
