@@ -9,11 +9,12 @@
 
 #define kCellWidth 100
 #define kCellHeight 100
-#define kLineSpacing 0
-#define kLeftMargin 0
-#define kRightMargin 0
-#define kInterSpacing 0
-
+#define kLineSpacing 2
+#define kLeftMargin 10
+#define kRightMargin 10
+#define kInterSpacing 2
+#define kHeaderHeight 0
+#define kFooterHeight 50
 
 @interface CollectionAlbumLayout () {
     NSInteger SectionCount;
@@ -30,12 +31,32 @@
 
 @implementation CollectionAlbumLayout
 
+#pragma mark - CellSize
+
+- (int)getWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.row + 1) % 4 == 0) {
+        return (int) minCellWidth * 2;
+    } else {
+        return (int) minCellWidth;
+    }
+}
+
+- (int)getHeightForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.row + 1) % 4 == 0) {
+        return (int) minCellWidth * 2;
+    } else {
+        return (int) minCellWidth;
+    }
+}
+
+#pragma mark - Override
+
 - (void)prepareLayout {
     [super prepareLayout];
     lastItemBottom = 0;
     kScreenWidth = [UIScreen mainScreen].bounds.size.width;
     kScreenHeight = [UIScreen mainScreen].bounds.size.height;
-    minCellWidth = kScreenWidth / 4;
+    minCellWidth = (kScreenWidth -kLeftMargin -kRightMargin - 3 * kInterSpacing) / 4;
     SectionCount = [self.collectionView numberOfSections];
     contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height);
     
@@ -155,22 +176,6 @@
   
 }
 
-- (int)getWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.row + 1) % 4 == 0) {
-        return (int) minCellWidth * 2;
-    } else {
-        return (int) minCellWidth;
-    }
-}
-
-- (int)getHeightForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ((indexPath.row + 1) % 4 == 0) {
-        return (int) minCellWidth * 2;
-    } else {
-        return (int) minCellWidth;
-    }
-}
-
 - (NSMutableArray *)getUpperAttributesArrayForSection:(long)_section {
     NSNumber *section = [NSNumber numberWithLong:_section];
     return [upperSpaceAttributesForSection objectForKey:section];
@@ -184,7 +189,7 @@
         if ([upperSpaceAttributesForSection objectForKey:nextSection] == nil) {
             NSMutableArray *array = [[NSMutableArray alloc] init];
             for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
-                CGRect upperSectionRect = CGRectMake(0, lastItemBottom + 100, 0, 0);
+                CGRect upperSectionRect = CGRectMake(0, lastItemBottom + kHeaderHeight + kFooterHeight, 0, 0);
                 [array addObject:[NSValue valueWithCGRect:upperSectionRect]];
             }
             [upperSpaceAttributesForSection setObject:array forKey:nextSection];
