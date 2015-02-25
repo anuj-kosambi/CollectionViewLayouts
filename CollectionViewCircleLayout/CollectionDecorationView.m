@@ -15,10 +15,10 @@
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         self.layer.borderWidth = 10;
-        self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:kBackgroundOpacity].CGColor;
+       self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:kBackgroundOpacity].CGColor;
         self.layer.shadowRadius = kShadowRadius;
-        self.layer.shadowOpacity = 1;
-        self.layer.shadowOffset = CGSizeMake(0, 10);
+      //  self.layer.shadowOpacity = 1;
+      //  self.layer.shadowOffset = CGSizeMake(0, 10);
         
     }
     return self;

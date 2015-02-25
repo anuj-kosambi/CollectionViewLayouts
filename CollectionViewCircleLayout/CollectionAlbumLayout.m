@@ -18,7 +18,7 @@
 #define decorationViewKind @"ImageTitle"
 
 @interface CollectionAlbumLayout () {
-    NSInteger SectionCount;
+    NSInteger sectionCount;
     NSInteger minCellWidth;
     NSInteger kScreenWidth;
     NSInteger kScreenHeight;
@@ -38,15 +38,18 @@
     if (self) {
         [self registerClass:[CollectionDecorationView class] forDecorationViewOfKind:decorationViewKind];
     }
-    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
-    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
-    minCellWidth = kCellWidth;//kScreenWidth / 4;
+
     return  self;
 }
 
 - (void)prepareLayout {
     [super prepareLayout];
-    SectionCount = [self.collectionView numberOfSections];
+    NSLog(@"prepareLayout");
+
+    kScreenWidth = [UIScreen mainScreen].bounds.size.width;
+    kScreenHeight = [UIScreen mainScreen].bounds.size.height;
+    minCellWidth = kCellWidth;//kScreenWidth / 4;
+    sectionCount = [self.collectionView numberOfSections];
     contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height);
     upperSpaceAttributes = [NSMutableArray array];
     for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
@@ -57,17 +60,18 @@
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
-    return YES;
+    return NO;
 }
 
 - (CGSize)collectionViewContentSize {
+    NSLog(@"collectionViewContentSize");
     contentSize = CGSizeMake(contentSize.width, lastItemBottom);
     return contentSize;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
+    NSLog(@"layoutAttributesForElementsInRect");
     NSMutableArray *arrayOfAttributesInScreen = [NSMutableArray array];
-    
     for (UICollectionViewLayoutAttributes *attributes in itemAttributes) {
         if ( CGRectIntersectsRect(rect, attributes.frame) ) {
             [arrayOfAttributesInScreen addObject:attributes];
@@ -83,6 +87,7 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"layoutAttributesForItemAtIndexPath: %ld", indexPath.row);
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     int itemWidth = [self getWidthForItemAtIndexPath:indexPath];
     int itemHeight = [self getHeightForItemAtIndexPath:indexPath];
@@ -114,6 +119,7 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"layoutAttributesForDecorationViewOfKind: %@ %ld", elementKind, indexPath.row);
     UICollectionViewLayoutAttributes *attributesForItem  = [itemAttributes objectAtIndex:indexPath.item];
     UICollectionViewLayoutAttributes *decoAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
 //    decoAttributes.frame = CGRectMake (attributesForItem.frame.origin.x, attributesForItem.frame.origin.y + CGRectGetHeight(attributesForItem.frame) * 0.8
@@ -127,7 +133,7 @@
 
 - (NSMutableArray *)makeAllItemAttributes {
     NSMutableArray *attributes = [NSMutableArray array];
-    for (int j = 0; j < SectionCount; j++) {
+    for (int j = 0; j < sectionCount; j++) {
         for ( int i = 0; i < [self.collectionView numberOfItemsInSection:j]; i++ ) {
             UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:j]];
             [attributes addObject:attrib];
@@ -138,7 +144,7 @@
 
 - (NSMutableArray *)makeAllDecorationAttributes {
     NSMutableArray *decoAttributes = [NSMutableArray array];
-    for (int j = 0; j < SectionCount; j++) {
+    for (int j = 0; j < sectionCount; j++) {
         for ( int i = 0; i < [self.collectionView numberOfItemsInSection:j]; i++ ) {
             UICollectionViewLayoutAttributes *attrib = [self layoutAttributesForDecorationViewOfKind:decorationViewKind atIndexPath:[NSIndexPath indexPathForItem:i inSection:j]];
             [decoAttributes addObject:attrib];
