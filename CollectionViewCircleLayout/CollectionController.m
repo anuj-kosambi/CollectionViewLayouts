@@ -26,13 +26,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[CollectionAlbumCell class] forCellWithReuseIdentifier:AlbumCellResuseIdentifier];
     [self.collectionView registerClass:[CollectionSupplementaryView class] forSupplementaryViewOfKind:@"Header" withReuseIdentifier:AlbumSupplyResuseIdentifier];
-    [self.collectionView setBackgroundColor:[UIColor darkGrayColor]];
+    [self.collectionView setBackgroundColor:[UIColor lightGrayColor]];
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 /*

@@ -86,6 +86,7 @@
     for (UICollectionViewLayoutAttributes *attributes in itemAttributes) {
         if ( CGRectIntersectsRect(rect, attributes.frame) ) {
             [arrayOfAttributesInScreen addObject:attributes];
+       
         }
     }
     

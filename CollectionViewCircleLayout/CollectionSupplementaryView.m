@@ -18,6 +18,8 @@
         self.layer.shadowOffset = CGSizeMake(0,20);
         self.layer.shadowRadius = 20;
         self.layer.zPosition = 2;
+        self.layer.shouldRasterize = YES;
+        self.layer.opaque = YES;
         self.sectionHeader = [[UILabel alloc] initWithFrame:self.bounds];
         [self.sectionHeader setTextAlignment:NSTextAlignmentCenter];
         [self.sectionHeader setFont:[UIFont boldSystemFontOfSize:14]];
