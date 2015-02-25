@@ -64,7 +64,7 @@
     upperSpaceAttributesForSection = [[NSMutableDictionary alloc] init];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (int i = 0; i < kScreenWidth / minCellWidth ;i++) {
-        CGRect sectionHeaderRect = CGRectMake(0, lastItemBottom + kHeaderHeight + kFooterHeight, 0, 0);
+        CGRect sectionHeaderRect = CGRectMake(0, lastItemBottom + kHeaderHeight + kLineSpacing, 0, 0);
         [array addObject:[NSValue valueWithCGRect:sectionHeaderRect]];
     }
     [upperSpaceAttributesForSection setObject:array forKey:[NSNumber numberWithLong:0]];
@@ -107,7 +107,6 @@
     attributes.frame = CGRectMake(0, 0, itemWidth, itemHeight);
     
     int cellPositionY = 0;
-    int extraPaddingTop = 0;
     int cellPositionX = [self gettingXCoordsFormAttributes:attributes];
     
     //Getting Y coords from upperSpaceAttributes
@@ -123,7 +122,7 @@
     }
 
     //Updating attributes in the upperSpaceAttributes for nextAllignment
-    attributes.frame = CGRectMake(cellPositionX, cellPositionY + kLineSpacing + extraPaddingTop, attributes.frame.size.width, attributes.frame.size.height);
+    attributes.frame = CGRectMake(cellPositionX, cellPositionY + kLineSpacing, attributes.frame.size.width, attributes.frame.size.height);
     [self updateAttributeForUpperSpaceAttributes:attributes];
     
     lastItemBottom = MAX(attributes.frame.origin.y + attributes.frame.size.height, lastItemBottom);

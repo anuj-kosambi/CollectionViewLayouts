@@ -13,4 +13,6 @@
 
 @interface CollectionSupplementaryView : UICollectionReusableView
 
+@property (nonatomic, strong) UILabel *sectionHeader;
+
 @end

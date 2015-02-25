@@ -56,6 +56,7 @@
     CollectionSupplementaryView *supplyView;
     if ([kind isEqual:AlbumHeaderSupplyKind]) {
         supplyView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:AlbumSupplyResuseIdentifier forIndexPath:indexPath];
+        supplyView.sectionHeader.text = [NSString stringWithFormat:@"%lu",indexPath.section];
         
     }
     return supplyView;

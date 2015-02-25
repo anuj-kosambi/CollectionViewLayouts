@@ -12,9 +12,19 @@
 
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame] ) {
-        [self setBackgroundColor:[UIColor redColor]];
+        [self setBackgroundColor:[UIColor whiteColor]];
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = 1;
+        self.layer.shadowOffset = CGSizeMake(0,20);
+        self.layer.shadowRadius = 20;
+        self.layer.zPosition = 2;
+        self.sectionHeader = [[UILabel alloc] initWithFrame:self.bounds];
+        [self.sectionHeader setTextAlignment:NSTextAlignmentCenter];
+        [self.sectionHeader setFont:[UIFont boldSystemFontOfSize:14]];
+        [self addSubview:self.sectionHeader];
     }
     return self;
 }
+
 
 @end
