@@ -7,47 +7,42 @@
 //
 
 #import "CollectionDataSource.h"
+#define ConvertIntToId(key) [NSNumber numberWithLong:key]
 
 @interface CollectionDataSource ()  {
-    NSInteger CellCount;
-    NSMutableArray *imageArray;
+    NSMutableDictionary *dataSource;
 }
 
 @end
 
 @implementation CollectionDataSource
 
-- (instancetype)init {
+- (instancetype)initWithDataSource:(NSMutableDictionary *)dicitonary {
     self = [super init];
-    imageArray = [NSMutableArray array];
-    if (self) {
-        for (int i = 1; i <= 20; i++) {
-            [imageArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
-        }
-        CellCount = 5;
-    }   
+    dataSource = dicitonary;
     return self;
 }
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return [dataSource allKeys].count;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 0)
-        return 5;
-    else if (section == 1)
-        return 20;
-    else
-        return 17;
+   
+    NSAssert([[dataSource objectForKey:ConvertIntToId(section)] isKindOfClass:[NSMutableArray class]], @"Invaild ObjectType in DataSouce at%ld",section);
+    NSMutableArray *allItems = [dataSource objectForKey:ConvertIntToId(section)];
+    return [allItems count];
+        
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:AlbumCellResuseIdentifier forIndexPath:indexPath];
-    cell.imageView.image = [imageArray objectAtIndex:(indexPath.row % [imageArray count])];
+     NSAssert([[dataSource objectForKey:ConvertIntToId(indexPath.section)] isKindOfClass:[NSMutableArray class]], @"Invaild ObjectType in DataSouce at%ld",indexPath.section);
+    NSMutableArray *allItems = [dataSource objectForKey:ConvertIntToId(indexPath.section)];
+    cell.imageView.image = [allItems objectAtIndex:indexPath.item];
 
     return cell;
 }

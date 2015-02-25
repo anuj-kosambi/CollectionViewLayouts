@@ -132,14 +132,15 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    int originY;
-    if (indexPath.section == 0 ) {
-        originY = 0;
-    }
-    else {
-    NSArray *array = [self getUpperAttributesArrayForSection:attributes.indexPath.section - 1];
-    CGRect upperCell = [(NSValue *)[array objectAtIndex: 0 ] CGRectValue];
-    originY = upperCell.origin.y + upperCell.size.height;
+    int originY = 0;
+    if (indexPath.section != 0 ) {
+        NSNumber *sectionKey = [NSNumber numberWithLong:indexPath.section];
+        NSUInteger partiitonCount = [((NSArray *)[upperSpaceAttributesForSection objectForKey:sectionKey]) count];
+        for (int i = 0; i < partiitonCount;i++ ) {
+            NSArray *array = [self getUpperAttributesArrayForSection:attributes.indexPath.section - 1];
+            CGRect upperCell = [(NSValue *)[array objectAtIndex: i ] CGRectValue];
+            originY = MAX(upperCell.size.height + upperCell.origin.y, originY);
+        }
     }
     attributes.frame = CGRectMake(0, originY + kLineSpacing, CGRectGetWidth(self.collectionView.frame), kHeaderHeight);
     return attributes;
@@ -185,15 +186,13 @@
         
         if( bestCell.origin.y + bestCell.size.height > currentCell.size.height + currentCell.origin.y) {
             if ( attributes.frame.size.width == minCellWidth ) {
-                bestCell = CGRectMake( leftPadding +  i *  ( minCellWidth + kInterSpacing), currentCell.origin.y,
+                bestCell = CGRectMake( leftPadding +  i *  ( minCellWidth + kInterSpacing) , currentCell.origin.y,
                                       currentCell.size.width, currentCell.size.height);
             } else {
-                bestCell = CGRectMake( leftPadding +  i *  ( minCellWidth + kInterSpacing), currentCell.origin.y,
+                bestCell = CGRectMake( leftPadding +  i *  ( minCellWidth + kInterSpacing ) , currentCell.origin.y,
                                       currentCell.size.width, currentCell.size.height);
             }
         }
-       
-        
     }
     cellPositionX = bestCell.origin.x;
     return cellPositionX;

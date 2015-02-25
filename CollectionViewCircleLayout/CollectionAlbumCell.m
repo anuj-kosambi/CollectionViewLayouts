@@ -21,10 +21,11 @@
 }
 
 - (void)layoutSubviews {
-    self.imageView.frame = self.bounds;
     self.imageView.layer.borderWidth = 5;
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.imageView.alpha = 1;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = 1;
     self.layer.zPosition = 1;
 }
 

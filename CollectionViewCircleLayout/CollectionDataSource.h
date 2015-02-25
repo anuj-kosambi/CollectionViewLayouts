@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CollectionAlbumCell.h"
 #import "CollectionSupplementaryView.h"
+
 @interface CollectionDataSource: NSObject <UICollectionViewDataSource>
+
+- (instancetype)initWithDataSource:(NSMutableDictionary *)dicitonary;
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#define ConvertIntToId(key) [NSNumber numberWithLong:key]
 
 @interface AppDelegate () {
     CollectionController *colletionController;
@@ -21,8 +22,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     CollectionAlbumLayout *circleLayout = [[CollectionAlbumLayout alloc] init];
+    NSMutableDictionary *dummyDictionary  = [[NSMutableDictionary alloc]init];
+    for (int j = 0; j < 2 ; j++) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (int i = 1; i <= (j+1) * 10; i++) {
+            [array addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",i]]];
+        }
+        [dummyDictionary setObject:array forKey:ConvertIntToId(j)];
+
+    }
+    
     colletionController = [[CollectionController alloc]initWithCollectionViewLayout:circleLayout];
-    collectionDataSource = [[CollectionDataSource alloc] init];
+    collectionDataSource = [[CollectionDataSource alloc] initWithDataSource:dummyDictionary];
     colletionController.collectionView.dataSource = collectionDataSource;
     colletionController.collectionView.delegate = circleLayout;
 

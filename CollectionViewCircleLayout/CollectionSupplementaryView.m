@@ -12,7 +12,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame] ) {
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.7]];
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowOpacity = 1;
         self.layer.shadowOffset = CGSizeMake(0,20);
