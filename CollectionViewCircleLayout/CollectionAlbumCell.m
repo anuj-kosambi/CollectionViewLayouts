@@ -16,13 +16,14 @@
         self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         self.imageView.layer.shouldRasterize = YES;
         self.imageView.layer.opaque = YES;
-        [self.contentView setBackgroundColor:[UIColor whiteColor]];
+        [self.contentView setBackgroundColor:[UIColor clearColor]];
         [self.contentView addSubview:self.imageView];
     }
     return self;
 }
 
 - (void)layoutSubviews {
+    self.bounds = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.imageView.frame = self.bounds;
     self.imageView.layer.borderWidth = 5;
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;

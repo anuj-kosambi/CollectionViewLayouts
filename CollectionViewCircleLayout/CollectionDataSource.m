@@ -7,15 +7,16 @@
 //
 
 #import "CollectionDataSource.h"
-#define ConvertIntToId(key) [NSNumber numberWithLong:key]
+
 
 @interface CollectionDataSource ()  {
-    NSMutableDictionary *dataSource;
-}
+  }
 
 @end
 
 @implementation CollectionDataSource
+
+@synthesize dataSource;
 
 - (instancetype)initWithDataSource:(NSMutableDictionary *)dicitonary {
     self = [super init];

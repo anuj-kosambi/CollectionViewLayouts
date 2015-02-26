@@ -115,6 +115,7 @@
         attributes.alpha = 0.75;
         return attributes;
     }
+
     
     int cellPositionY = 0;
     int cellPositionX = [self gettingXCoordsFormAttributes:attributes];
@@ -134,6 +135,10 @@
     //Updating attributes in the upperSpaceAttributes for nextAllignment
     attributes.frame = CGRectMake(cellPositionX, cellPositionY + kLineSpacing, attributes.frame.size.width, attributes.frame.size.height);
     [self updateAttributeForUpperSpaceAttributes:attributes];
+    
+    if ([indexPath isEqual:self.hoverItem]) {
+        attributes.alpha = 0.5;
+    }
     
     lastItemBottom = MAX(attributes.frame.origin.y + attributes.frame.size.height, lastItemBottom);
     [self updateUpperRectForNewSection:indexPath];

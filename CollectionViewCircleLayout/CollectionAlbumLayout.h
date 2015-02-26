@@ -11,5 +11,6 @@
 
 @property (nonatomic) CGPoint gesturePoint;
 @property (nonatomic) NSIndexPath *selectedItem;
+@property (nonatomic) NSIndexPath *hoverItem;
 
 @end

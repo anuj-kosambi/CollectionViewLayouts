@@ -8,7 +8,7 @@
 
 #import "CollectionController.h"
 #import "CollectionAlbumLayout.h"
-
+#import "CollectionDataSource.h"
 
 @interface CollectionController ()
 
@@ -38,6 +38,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)handleLongPress:(UIPanGestureRecognizer *)sender{
     CollectionAlbumLayout  *layout = (CollectionAlbumLayout *)self.collectionView.collectionViewLayout;
+    CollectionDataSource *collectionDataSource = self.collectionView.dataSource;
     CGPoint gesturePosition = [sender locationInView:self.collectionView];
     NSIndexPath *selectedIndexPath = [self.collectionView indexPathForItemAtPoint:gesturePosition];
     if (selectedIndexPath) {
@@ -50,6 +51,7 @@ static NSString * const reuseIdentifier = @"Cell";
         else if (sender.state == UIGestureRecognizerStateChanged)
         {
             layout.gesturePoint = gesturePosition;
+            layout.hoverItem = [self.collectionView indexPathForItemAtPoint:gesturePosition];
             [layout invalidateLayout];
         }
         else
@@ -57,14 +59,19 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.collectionView performBatchUpdates:^
              {
                  layout.selectedItem = nil;
+              
                  layout.gesturePoint = CGPointZero;
                  
              } completion:^(BOOL completion){
                  NSIndexPath *newIndexPath = [self.collectionView indexPathForItemAtPoint:gesturePosition];
                  [self.collectionView moveItemAtIndexPath:selectedIndexPath toIndexPath:newIndexPath];
+                 NSMutableArray *imageArray = [collectionDataSource.dataSource objectForKey:ConvertIntToId(selectedIndexPath.section)];
+                 UIImage *image = [imageArray objectAtIndex:selectedIndexPath.item];
+                 [imageArray removeObjectAtIndex:selectedIndexPath.item];
+                 [imageArray insertObject:image atIndex:newIndexPath.item];
                  [self.collectionView reloadData];
+                layout.hoverItem = nil;
                  [layout invalidateLayout];
-
              }];
         }
     }

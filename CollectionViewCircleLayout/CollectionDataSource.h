@@ -10,9 +10,11 @@
 #import "CollectionAlbumCell.h"
 #import "CollectionSupplementaryView.h"
 
+#define ConvertIntToId(key) [NSNumber numberWithLong:key]
+
 @interface CollectionDataSource: NSObject <UICollectionViewDataSource>
 
+@property (nonatomic) NSMutableDictionary *dataSource;
 - (instancetype)initWithDataSource:(NSMutableDictionary *)dicitonary;
-
 
 @end
