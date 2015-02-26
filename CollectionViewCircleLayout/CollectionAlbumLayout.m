@@ -32,6 +32,8 @@
 
 @implementation CollectionAlbumLayout
 
+@synthesize selectedItem;
+
 #pragma mark - CellSize
 
 - (int)getWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,6 +108,13 @@
     int itemHeight = [self getHeightForItemAtIndexPath:indexPath];
     
     attributes.frame = CGRectMake(0, 0, itemWidth, itemHeight);
+    
+    if ([indexPath isEqual:self.selectedItem]) {
+        attributes.frame = CGRectMake(self.gesturePoint.x, self.gesturePoint.y, CGRectGetWidth(attributes.frame),CGRectGetHeight(attributes.frame));
+        attributes.zIndex = 1;
+        attributes.alpha = 0.75;
+        return attributes;
+    }
     
     int cellPositionY = 0;
     int cellPositionX = [self gettingXCoordsFormAttributes:attributes];

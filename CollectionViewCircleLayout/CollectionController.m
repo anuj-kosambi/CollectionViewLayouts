@@ -7,6 +7,8 @@
 //
 
 #import "CollectionController.h"
+#import "CollectionAlbumLayout.h"
+
 
 @interface CollectionController ()
 
@@ -27,7 +29,45 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[CollectionAlbumCell class] forCellWithReuseIdentifier:AlbumCellResuseIdentifier];
     [self.collectionView registerClass:[CollectionSupplementaryView class] forSupplementaryViewOfKind:@"Header" withReuseIdentifier:AlbumSupplyResuseIdentifier];
     [self.collectionView setBackgroundColor:[UIColor lightGrayColor]];
+    UILongPressGestureRecognizer *gestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
+    NSMutableArray *gArray = [[NSMutableArray alloc] initWithArray:self.collectionView.gestureRecognizers];
+    [gArray addObject:gestureRecognizer];
+    self.collectionView.gestureRecognizers = gArray;
     // Do any additional setup after loading the view.
+}
+
+- (void)handleLongPress:(UIPanGestureRecognizer *)sender{
+    CollectionAlbumLayout  *layout = (CollectionAlbumLayout *)self.collectionView.collectionViewLayout;
+    CGPoint gesturePosition = [sender locationInView:self.collectionView];
+    NSIndexPath *selectedIndexPath = [self.collectionView indexPathForItemAtPoint:gesturePosition];
+    if (selectedIndexPath) {
+
+        if (sender.state == UIGestureRecognizerStateBegan)
+        {
+            layout.selectedItem = selectedIndexPath;
+            layout.gesturePoint = gesturePosition;
+        }
+        else if (sender.state == UIGestureRecognizerStateChanged)
+        {
+            layout.gesturePoint = gesturePosition;
+            [layout invalidateLayout];
+        }
+        else
+        {
+            [self.collectionView performBatchUpdates:^
+             {
+                 layout.selectedItem = nil;
+                 layout.gesturePoint = CGPointZero;
+                 
+             } completion:^(BOOL completion){
+                 NSIndexPath *newIndexPath = [self.collectionView indexPathForItemAtPoint:gesturePosition];
+                 [self.collectionView moveItemAtIndexPath:selectedIndexPath toIndexPath:newIndexPath];
+                 [self.collectionView reloadData];
+                 [layout invalidateLayout];
+
+             }];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

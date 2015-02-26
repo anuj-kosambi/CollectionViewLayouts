@@ -15,8 +15,8 @@
         [self setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.7]];
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowOpacity = 1;
-        self.layer.shadowOffset = CGSizeMake(0,20);
-        self.layer.shadowRadius = 20;
+//        self.layer.shadowOffset = CGSizeMake(0,20);
+//        self.layer.shadowRadius = 20;
         self.layer.zPosition = 2;
         self.layer.shouldRasterize = YES;
         self.layer.opaque = YES;

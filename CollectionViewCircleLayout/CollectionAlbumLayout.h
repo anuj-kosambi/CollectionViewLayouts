@@ -9,4 +9,7 @@
 
 @interface CollectionAlbumLayout : UICollectionViewLayout <UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic) CGPoint gesturePoint;
+@property (nonatomic) NSIndexPath *selectedItem;
+
 @end
